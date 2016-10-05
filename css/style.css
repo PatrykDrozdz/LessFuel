@@ -1,9 +1,10 @@
 body{
     background:  url("broken_noise.png");/*(from http://subtlepatterns.com/) */
+    width: 98%;
 }
 
 .container{
-    width: 1260px;
+    width: 100%;
     height: 880px;
     background:  url("broken_noise.png");/*(from http://subtlepatterns.com/) */
     font-family: "Lucida Console", Monaco, monospace;
@@ -11,16 +12,25 @@ body{
 }
 /*kolor broken_noise #1c1c1c*/
 #header{
-    width: 1260px;
+    width: 100%;
     height: 100px;
     background-color: #1c2c2c;
     text-align: center;
     padding: 5px;
 }
+.title{
+    width: 99%;
+    height: 50%;
+    
+    font-size: 200%;
+    font-weight: bold;
+    padding: 1%;
+}
+
 
 #left_log{
     float: left;
-    width: 620px;
+    width: 50%;
     height: 680px;
     font-size: 20px;
     background-color: #1c1c1c;
@@ -28,7 +38,7 @@ body{
 
 #right_addition{
     float: left;
-    width: 620px;
+    width: 50%;
     height: 680px;
     font-size: 20px;
      background-color: #1c1c1c;
@@ -36,13 +46,13 @@ body{
 
 #left_add{
     float: left;
-    width: 620px;
+    width: 100%;
     height: 70px;
     background-color: #1c1c1c;
 }
 
 #make_account{
-    width: 640px;
+     width: 100%;
     height: 388px;
     font-size: 30px;
     background-color: #3A3A33;
@@ -65,7 +75,7 @@ body{
 
 #right_info{
     float: left;
-    width: 640px;
+    width: 50%;
     height: 680px;
     font-size: 30px;
     background-color: #3A3A3A;
@@ -73,7 +83,7 @@ body{
 
 #right_info2{
     float: left;
-    width: 640px;
+    width: 50%;
     height: 680px;
     font-size: 30px;
     background-color: #1c1c1c;
@@ -87,7 +97,7 @@ body{
 
 #footer{
     clear: both;
-    width: 1260px;
+    width: 100%;
     height: 100px;
     background-color: #1c2c2c;
     font-size: 20px;
@@ -95,7 +105,7 @@ body{
 }
 
 #add{
-    width: 1260px;
+    width: 100%;
     height: 10px;
     background-color: #1c2c2c;
     font-size: 10px;
@@ -103,7 +113,7 @@ body{
 }
 
 .add2{
-    width: 1260px;
+    width: 100%;
     height: 30px;
     background-color: #1c2c2c;
     font-size: 20px;
@@ -111,20 +121,20 @@ body{
 }
 
 #give_your_e-mail{
-    width: 1265px;
+    width: 100%;
     height: 680px;
     background-color: #1c1c1c;
     text-align: left;
 }
 #main_wall{
-    width: 1265px;
+    width: 100%;
     height: 680px;
     background-color: #1c1c1c;
     text-align: center;
 }
 
 .logingout{
-    width: 1265px;
+    width: 100%;
     height: 50px;
     text-align: center;
 }

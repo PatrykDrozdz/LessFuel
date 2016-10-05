@@ -41,7 +41,7 @@
                     $id = $_SESSION['id'];
                     if($valid==true){
                         
-                        if($conection->query("UPDATE  users SET e_mail = '$email' WHERE id='$id'")){
+                        if($conection->query("UPDATE  users SET email = '$email' WHERE id='$id'")){
                             $_SESSION['email_change']="E-mail został zmieniony";
                         } else {
                             throw new Exception($conection->errno);
@@ -89,7 +89,7 @@
         <div class="container">
             
             <div id="header">
-                <h1>LessFuel</h1>
+                <div class="title">LessFuel</div>
                 
                 <div class="logingout">
                     <a href="interface.php">Strona główna</a>

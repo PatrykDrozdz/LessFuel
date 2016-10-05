@@ -36,7 +36,7 @@
         <div class="container">
             
             <div id="header">
-                <h1>LessFuel</h1>
+                <div class="title">LessFuel</div>
                     
                     <a href="index.php">Strona Główna - zapraszamy do zalogowania się</a>
                 

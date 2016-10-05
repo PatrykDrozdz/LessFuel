@@ -165,7 +165,7 @@
         <div class="container">
             
             <div id="header">
-                <h1>LessFuel</h1>
+                <div class="title">LessFuel</div>
                 
                 <div class="logingout">
                    <a href="interface.php">Strona główna</a>

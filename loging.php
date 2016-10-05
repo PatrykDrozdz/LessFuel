@@ -34,7 +34,7 @@ require_once 'connect.php';
             if($howManyUsers>0){
                 
                 $row = $result->fetch_assoc();
-                echo $row['password'].'<br/>';
+                
                 if(password_verify($pass, $row['password'])){
                 
                     $_SESSION['loged'] = true;//
@@ -42,20 +42,30 @@ require_once 'connect.php';
                     $_SESSION['id_users'] = $row['id_users'];//pobieranie Id użytkownika
                     $_SESSION['name'] = $row['name'];
                     $_SESSION['pass'] = $row['password'];
+                    $flag = $row['flag'];
                 
                     unset($_SESSION['error']);
                 
                     $result->free();
-                    header('Location: interface.php');
+                    
+                    if($flag==1){
+                        //echo $flag;
+                        header('Location: interface.php');
+                    } else if($flag==0){
+                       // echo $flag;
+                       $_SESSION['error'] = '<span class="error>konto '
+                               . 'zostało usunięte!</span>';		
+                            header('Location: index.php'); 
+                    }
                 } else {
-					$_SESSION['error'] = '<span style="color:red">Nieprawidłowy '
+					$_SESSION['error'] = '<span class="error">Nieprawidłowy '
                         . 'e-mail lub hasło!</span>';
 						
 					header('Location: index.php');
                 }
                 
             }else{
-                $_SESSION['error'] = '<span style="color:red">Nieprawidłowy '
+                $_SESSION['error'] = '<span class="errorSpan">Nieprawidłowy '
                         . 'e-mail lub hasło!</span>';
 						
                 header('Location: index.php');

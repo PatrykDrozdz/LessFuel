@@ -16,7 +16,7 @@
        
        if((strlen($pass)<5) || (strlen($pass)>15)){
             $valid = FALSE;
-            $_SESSION['error_pass'] = "Has�o musi mie� od 5 do 15 znak�w";
+            $_SESSION['error_pass'] = "Hasło musi mieć od 5 do 15 znaków";
         }
         
         //hashowanie has�a
@@ -33,15 +33,16 @@
                 if($conection->errno!=0){
                     throw new Exception(mysqli_connect_errno());
                 } else {
-					
-					$query = "DELETE FROM users WHERE id = '$id'";
-					
-                    $id = $_SESSION['id'];
+			$id_users = $_SESSION['id_users'];	
+                        $zero = 0;
+			$query = "UPDATE users SET "
+                                . "flag = '$zero' WHERE id_users = '$id_users'";
+                        
                     if($valid==true){
                         
                         if($conection->query($query)){
                             session_unset();
-							header('Location: index.php');
+			    header('Location: index.php');
                         } else {
                             throw new Exception($conection->errno);
                         }
@@ -88,7 +89,7 @@
         <div class="container">
             
             <div id="header">
-                <h1>LessFuel</h1>
+                <div class="title">LessFuel</div>
                 
                 <div class="logingout">
                     <a href="interface.php">Strona główna</a>

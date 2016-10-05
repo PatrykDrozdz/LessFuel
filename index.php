@@ -35,7 +35,7 @@ if((isset($_SESSION['loged'])) && ($_SESSION['loged']==true)){
         <div class="container">
             
             <div id="header">
-                <h1>LessFuel</h1>
+                <div class="title">LessFuel</div>
             </div>
             
             <div id="left_log">

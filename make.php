@@ -169,7 +169,7 @@
         <div class="container">
             
             <div id="header">
-                <h1>LessFuel</h1>
+                <div class="title">LessFuel</div>
                 
                 <a href="http://localhost/lessfuel/index.php">Strona główna</a>
             </div>
