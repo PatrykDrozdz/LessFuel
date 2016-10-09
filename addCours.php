@@ -6,8 +6,8 @@
         exit();
     }
 
-    $totFuel = 0;
-    $totRoad = 0;
+     $totFuel = 0;
+     $totRoad = 0;
     
     require_once 'connect.php';
     
@@ -16,13 +16,13 @@
         $valid=true;
          $conection = new mysqli($host, $db_user, $db_password, $db_name);
          
-         $id = $_SESSION['id'];//id uzytkownika
+         $id = $_SESSION['id_users'];//id uzytkownika
          
           if($conection->connect_errno!=0){
              echo"Error: ".$conection->connect_errno;
          }else {
             
-            $query = "SELECT * FROM cars WHERE userId = '$id'";
+            $query = "SELECT * FROM cars";
             
             if($valid==true){
                 
@@ -32,14 +32,18 @@
                 
                 $howMany = $result->num_rows;
                  for($i=1; $i<=$howMany; $i++){
-                      $res = $conection->query("SELECT * FROM cars WHERE id = '$i' AND userId = '$id'");
+                      $res = $conection->query("SELECT * FROM cars WHERE id_cars = '$i' "
+                              . "AND users_id = '$id'");
                       $row2 = $res->fetch_assoc();
                       //samochód
                       $tabCar[$i] = $row2['mark'];
                       
                       //id
-                      $tabId[$i] = $row2['id'];
-						
+                      if($tabCar[$i]!=NULL){
+                        $tabId[$i] = $row2['id_cars'];
+			//echo $tabId[$i]. '<br/>';	
+                      }
+                      
                  }
 
 
@@ -69,14 +73,14 @@
         $fuel = $_POST['fuel'];
         $infoRoad = $_POST['infoRoad'];
         
-        $userId = $_SESSION['id'];
+        $userId = $_SESSION['id_users'];
         
           if(is_int($distance)){
                 $valid=FALSE;
                 $_SESSION['error_distance'] = "Podaj właściwą liczbę";
             }    
             
-            if(is_float($fuel)){
+            if(is_int($fuel)){
                 $valid=FALSE;
                 $_SESSION['error_fuel'] = "Podaj liczbę całkowitą";
             }
@@ -92,39 +96,63 @@
                     $valid=true;
                     
                     $carRes = $conection->query("SELECT * FROM cars WHERE "
-                            . "mark = '$mark' AND userId = '$userId'");
+                            . "mark = '$mark' AND users_id = '$userId'");
                     
                     $row = $carRes->fetch_assoc();
                     
-                    $carId = $row['id'];
+                    $carId = $row['id_cars'];
                     
-     // $query = "INSERT INTO cars(id, mark, capacity, yearProd, addInfo, userId)"
-                  //    . "VALUES (NULL, '$mark', '$capacity', '$yearProd', '$infoCar', '$userId')";
-                
+                    $carRes->free();
                     
-                    $query = "INSERT INTO course(id, from, to, distance, fuel, "
-                            . "roadInfo, carId) VALUES  (NULL, '$from', '$to', "
-                            . "'$distance', '$fuel', '$infoRoad', '$carId')";
+                    
+                    
+                    $queryGetFinalInfo = "SELECT * FROM final_info WHERE "
+                            . "cars_id_cars = '$carId'";
+                    
+                    $finalRes = $conection->query($queryGetFinalInfo);
+                    
+                    $row=$finalRes->fetch_assoc();
+                    
+                    $totFuel = $row['total_fuel_used'];
+                    $totRoad = $row['total_distance_driven'];
+                    
+                    $finalRes->free();
+                  
+                    $totFuel = $totFuel + $fuel;
+                    $totRoad = $totRoad + $distance;
                     
                   
-                  $totFuel = $totFuel + $fuel;
-                  $totRoad = $totRoad + $distance;
-                    
+                  
                     if($valid==true){
                         
-			if($conection->query($query)){
+                        $queryAddCourse = "INSERT INTO course(id_course, from, to, distance, fuel_used, "
+                            . "additional_road_info, cars_id_cars) "
+                            . "VALUES(NULL, '$from', '$to', "
+                            . "'$distance', '$fuel', '$infoRoad', '$carId')";
                         
-                            $query2 = "INSERT INTO finalinfo(id, carId, totalFuelUsed, totalRoad)"
-                            . "VALUES(NULL, '$carId', '$totFuel', '$totRoad')";        
+                        /*************************
+                          echo $totFuel. '<br/>';
+                          echo $totRoad;
+                         /*************************/
+                        
+                        /*************************************/
+                         if($conection->query($queryAddCourse)){
+                        
+                            $query2 = "UPDATE final_info SET total_fuel_used='$totFuel', "
+                                    . "total_distance_driven='$totRoad' WHERE "
+                                    . "cars_id_cars='$carId'";        
                             if($conection->query($query2)){
                             
                                 $_SESSION['coursAdd'] = "Trasa dodana";
                                     
                             }
 			    
-			} else {
+			/***************************************/
+                         } else {
+                         
                             throw new Exception($conection->errno);
-                        }
+                        } 
+                        /******************************************/
                         
 			$conection->close();			
                     }
@@ -186,7 +214,9 @@
                     
                     <?php 
                         for($i=1; $i<=$howMany; $i++){
-                            echo '<option  name="cars">'.$tabCar[$i].'</option>';
+                            if($tabCar[$i]!=NULL){
+                                echo '<option  name="cars">'.$tabCar[$i].'</option>';
+                            }
                     }
                     
                     ?>  
@@ -260,7 +290,7 @@
                     </div>
                     </form>
                 <div id="left_add">
-                    <div id="photos"></div>
+                   
                 </div>
                 
                 

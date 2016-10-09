@@ -29,19 +29,36 @@
             
             require_once 'connect.php';
                 
+           
+            
+            
             mysqli_report(MYSQLI_REPORT_STRICT);
             
             try{
                 $conection = new mysqli($host, $db_user, $db_password, $db_name);
                 
+                 
+                 //czy istnieje e-mail
+                $result = $conection->query("SELECT * FROM users WHERE email='$email'");
+
+                if(!$result) {
+                    throw new Exception ($conection->errno);
+                }
+                $howManyEmails = $result->num_rows;
+
+                if($howManyEmails>0){
+                    $valid=false;
+                    $_SESSION['error_email'] = "E-mail o podanym adresie jest już w bazie!";
+                }
+                
                 if($conection->errno!=0){
                     throw new Exception(mysqli_connect_errno());
                 } else {
                         
-                    $id = $_SESSION['id'];
+                    $id = $_SESSION['id_users'];
                     if($valid==true){
                         
-                        if($conection->query("UPDATE  users SET email = '$email' WHERE id='$id'")){
+                        if($conection->query("UPDATE  users SET email = '$email' WHERE id_users='$id'")){
                             $_SESSION['email_change']="E-mail został zmieniony";
                         } else {
                             throw new Exception($conection->errno);
@@ -89,7 +106,7 @@
         <div class="container">
             
             <div id="header">
-                <div class="title">LessFuel</div>
+                <div class="title">LessFuel - Ustawienia Twojego konta</div>
                 
                 <div class="logingout">
                     <a href="interface.php">Strona główna</a>
@@ -102,7 +119,7 @@
             
             <div id="main_wall">
                 <div id="left_log">
-                    Ustawienia Twojego konta
+                    
                     <br/>
                     <br/>
                     <?php//zmiana e-maila ?>

@@ -13,7 +13,7 @@
        $pass = $_POST['pass'];
        $oldPass = $_POST['oldPass'];
        $postPass = $_POST['pass']; 
-       $id = $_SESSION['id'];
+       $id = $_SESSION['id_users'];
        
        if((strlen($pass)<5) || (strlen($pass)>15)){
             $valid = FALSE;
@@ -41,10 +41,10 @@
                     throw new Exception(mysqli_connect_errno());
                 } else {
 
-                    $id = $_SESSION['id'];
+                    $id = $_SESSION['id_users'];
                     if($valid==true){
                         
-                        if($conection->query("UPDATE  users SET password = '$pass_hash' WHERE id='$id'")){
+                        if($conection->query("UPDATE  users SET password = '$pass_hash' WHERE id_users='$id'")){
                             $_SESSION['pass_change']="Hasło zostało zmienione";
                         } else {
                             throw new Exception($conection->errno);
@@ -92,7 +92,7 @@
         <div class="container">
             
             <div id="header">
-                <div class="title">LessFuel</div>
+                <div class="title">LessFuel - Ustawienia Twojego konta</div>
                 
                 <div class="logingout">
                     <a href="interface.php">Strona główna</a>
@@ -105,7 +105,7 @@
             
             <div id="main_wall">
                 <div id="left_log">
-                    Ustawienia Twojego konta
+                    
                     <br/>
                     <br/>
                     <?php//zmiana e-maila ?>

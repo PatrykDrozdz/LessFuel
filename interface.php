@@ -6,7 +6,8 @@
         exit();
     }
 
-	
+        $id_users = $_SESSION['id_users'];
+        
 	require_once 'connect.php';
 	try{
         $valid=true;
@@ -18,7 +19,7 @@
              echo"Error: ".$conection->connect_errno;
          }else {
             
-            $query = "SELECT * FROM cars WHERE userId = '$id'";
+            $query = "SELECT * FROM cars";
             
             if($valid==true){
                 
@@ -27,12 +28,14 @@
                 //$row = $result->fetch_assoc();
                 
                 $howMany = $result->num_rows;
-					
+				
                  for($i=1; $i<=$howMany; $i++){
-                      $res = $conection->query("SELECT * FROM cars WHERE id = '$i' AND userId = '$id'");
+                      $res = $conection->query("SELECT * FROM cars WHERE id_cars = '$i' "
+                              . "AND users_id = '$id_users'");
                       $row2 = $res->fetch_assoc();
                       //samochód
                       $tabCar[$i] = $row2['mark'];
+                    
                  }
 
 
@@ -91,7 +94,7 @@
                 <div id="left_log">
                 
                <?php 
-                    echo"<a>Witaj  ".$_SESSION['name']."!";
+                    echo"Witaj  ".$_SESSION['name']."!";
                ?>
                 
                 <br/>
@@ -102,7 +105,9 @@
                     
                      <?php 
                         for($i=1; $i<=$howMany; $i++){
-                            echo '<option name="carId">'.$tabCar[$i].'</option>';
+                            if($tabCar[$i]!=NULL){
+                                echo '<option name="carId">'.$tabCar[$i].'</option>';
+                            }
                     }
                     
                     ?>  

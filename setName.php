@@ -45,10 +45,10 @@
                     throw new Exception(mysqli_connect_errno());
                 } else {
 
-                    $id = $_SESSION['id'];
+                    $id = $_SESSION['id_users'];
                     if($valid==true){
                         
-                        if($conection->query("UPDATE  users SET name = '$name' WHERE id='$id'")){
+                        if($conection->query("UPDATE  users SET name = '$name' WHERE id_users='$id'")){
                             $_SESSION['name_change']="Imię zostało zmienione";
                         } else {
                             throw new Exception($conection->errno);
@@ -96,7 +96,7 @@
         <div class="container">
             
             <div id="header">
-                <div class="title">LessFuel</div>
+                <div class="title">LessFuel - Ustawienia Twojego konta</div>
                 
                 <div class="logingout">
                     <a href="interface.php">Strona główna</a>
@@ -109,7 +109,7 @@
             
             <div id="main_wall">
                 <div id="left_log">
-                    Ustawienia Twojego konta
+                  
                     <br/>
                     <br/>
                     <?php//zmiana e-maila ?>

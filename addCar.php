@@ -18,7 +18,7 @@
             $yearProd = $_POST['yearProd'];//liczba int
             $infoCar = $_POST['infoCar']; 
            
-            if(!is_int($yearProd)){
+           /* if(!is_int($yearProd)){
                 $valid=FALSE;
                 $_SESSION['error_yearProd'] = "Podaj właściwą";
             }    
@@ -32,21 +32,26 @@
                    $valid=FALSE;
             $_SESSION['error_mark'] = "Nazwa auta może składać się tylko "
                     . "z liter i cyfr (bez polskich zanków)";
-            }
+            }*/
             
-                 require_once 'connect.php';
+            require_once 'connect.php';
                  
               try{
                 $conection = new mysqli($host, $db_user, $db_password, $db_name);
                
-                $userId = $_SESSION['id'];//id użytkownika
+                $userId = $_SESSION['id_users'];//id użytkownika
                 
-                $chechCar = $conection->query("SELECT id FROM cars WHERE "
-                        . "mark='$mark' AND userId = '$userId'");
+                $selectCarNumes = $conection->query("SELECT * FROM cars");
+                
+                $allCarsCount = $selectCarNumes->num_rows;
+                $allCarsCount = $allCarsCount + 1;
+                
+                $chechCar = $conection->query("SELECT id_cars FROM cars WHERE "
+                        . "mark='$mark' AND users_id = '$userId'");
                 
                 
                $howManyCars= $chechCar->num_rows;
-               
+               //echo $howManyCars;
                if(!$chechCar ) {
                     throw new Exception ($conection->errno);
                 }
@@ -61,31 +66,31 @@
                     throw new Exception(mysqli_connect_errno());
                 } else {
                      
-                    $query = "INSERT INTO cars(id, mark, capacity, yearProd, addInfo, userId)"
+                    $query = "INSERT INTO cars(id_cars, mark, capacity, "
+                            . "production_year, additional_info, users_id)"
                             . "VALUES (NULL, '$mark', '$capacity', '$yearProd', '$infoCar', '$userId')";
 
                     //ustawienia sesji
-                    $result = $conection->query("SELECT * FROM cars WHERE userId = '$id'");
+                    $result = $conection->query("SELECT * FROM cars WHERE "
+                            . "users_id = '$userId' AND mark = '$mark'");
                     
                      $row = $result->fetch_assoc();
                      
-                     $res = $conection->query("SELECT * FROM users WHERE id = '$id'");
+                     $idFromCar = $row['id_cars'];
+                      $result->free();
                      
-               /*      $row2 = $res->fetch_assoc();
+                     echo $idFromCar;
+                     $queryFinalAdd = "INSERT INTO final_info(id_final_info, "
+                             . "total_fuel_used, total_distance_driven, cars_id_cars) "
+                             . "VALUES(NULL, NULL, NULL, '$allCarsCount')";
                      
-                    $_SESSION['idCar'] = $row['id'];//wyłuskanie id auta
                     
-                    $_SESSION['mark'] = $row['mark'];
-                    $_SESSION['capacity'] = $row['capacity'];
-                    $_SESSION['yearProd'] = $row['yearProd'];
-                    
-                 */
-                if($valid==true){
+                    if($valid==true){
                     ////////////////
                         if($conection->query($query)){
-							
-                            $_SESSION['carAdd']="Dodano Auto do bazy"; 
-			
+                            if($conection->query($queryFinalAdd)){
+                                $_SESSION['carAdd']="Dodano Auto do bazy"; 
+                            }
                 
                         } else {
                             throw new Exception($conection->errno);
@@ -217,8 +222,10 @@
                     <input type="submit" value="Dodaj" id="button"/>
                     </div>
                     </form>
-                <div id="left_add">
-                    <div id="photos"></div>
+                <div id="right_info2">
+                    <div id="photos">
+                    
+                     </div>
                 </div>
                 
                 

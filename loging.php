@@ -48,12 +48,22 @@ require_once 'connect.php';
                 
                     $result->free();
                     
-                    if($flag==1){
+                    if($flag==1) {
                         //echo $flag;
                         header('Location: interface.php');
                     } else if($flag==0){
                        // echo $flag;
-                       $_SESSION['error'] = '<span class="error>konto '
+
+                        
+                        $_SESSION['loged'] = false;
+                       
+                        unset($_SESSION['registered']);
+                       unset($_SESSION['login']);
+                       unset($_SESSION['pass']);
+     
+                        session_unset();
+                       
+                       $_SESSION['error'] = '<span class="error">konto '
                                . 'zostało usunięte!</span>';		
                             header('Location: index.php'); 
                     }
@@ -65,7 +75,7 @@ require_once 'connect.php';
                 }
                 
             }else{
-                $_SESSION['error'] = '<span class="errorSpan">Nieprawidłowy '
+                $_SESSION['error'] = '<span class="error">Nieprawidłowy '
                         . 'e-mail lub hasło!</span>';
 						
                 header('Location: index.php');

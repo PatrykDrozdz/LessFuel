@@ -89,7 +89,7 @@
         <div class="container">
             
             <div id="header">
-                <div class="title">LessFuel</div>
+                <div class="title">LessFuel - Ustawienia Twojego konta</div>
                 
                 <div class="logingout">
                     <a href="interface.php">Strona główna</a>
