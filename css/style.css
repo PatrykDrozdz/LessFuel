@@ -5,7 +5,7 @@ body{
 
 .container{
     width: 100%;
-    height: 880px;
+    height: 950px;
     background:  url("broken_noise.png");/*(from http://subtlepatterns.com/) */
     font-family: "Lucida Console", Monaco, monospace;
     color: #D5D5D5;
@@ -56,6 +56,7 @@ body{
     height: 388px;
     font-size: 30px;
     background-color: #3A3A33;
+    
 }
 
 #button{
@@ -170,7 +171,10 @@ body{
     
 }
 
-
+ul.colOpt li{
+    display: block;
+    list-style: none;
+}
 
 ul.menu li{
     display: block;
@@ -181,7 +185,7 @@ ul.menu li{
     text-align: center;
 }
 
-ul.menu a:visited {
+ul.menu a:visited, ul.colOpt a:visited{
 	text-decoration: none;
 	display: block;
 	width: 100%;
@@ -200,4 +204,13 @@ ul.menu a:hover{
     border-color: #1c2c2c;
     border-left-color: white;
     border-right-color: white;
+}
+
+ul.colOpt a:hover {
+	border-style: inset;
+	padding: 10px;
+        border-left-color: white;
+        border-right-color: white;
+        border-top-color: #1c1c1c;
+            
 }

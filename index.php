@@ -6,7 +6,8 @@ if((isset($_SESSION['loged'])) && ($_SESSION['loged']==true)){
     header('Location: interface.php');
     exit();//opuszczanie skryptu
 }
-    
+
+          
 ?>
 
 
@@ -62,13 +63,17 @@ if((isset($_SESSION['loged'])) && ($_SESSION['loged']==true)){
                     
                 </form>
                 
-                <?php 
-                if(isset($_SESSION['error'])){
-                    echo $_SESSION['error'];
-                }
-                ?>
+             
                 
-                <div id="left_add"></div> 
+                <div id="left_add">
+                    <?php 
+                            
+                        if(isset($_SESSION['error'])){
+                            echo $_SESSION['error'];
+                        }
+                    ?>
+                    
+                </div> 
                 
                 <div id="make_account">
                     Nie masz jeszcze konta. <br/>
@@ -97,6 +102,8 @@ if((isset($_SESSION['loged'])) && ($_SESSION['loged']==true)){
             </div>
             
             <div id="footer">
+                <br/>
+                <br/>
                LessFuel &copy; Prawa zastrzeżone
                
                <div id="add">

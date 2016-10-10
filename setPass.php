@@ -96,14 +96,14 @@
                 
                 <div class="logingout">
                     <ul class="menu">
-                        <li><a href="interface.php">Główna</a></li>
+                        <li><a href="interface.php">Strona główna</a></li>
                         <li><a href="addCar.php">Dodaj auto</a></li>
                         <li><a href="addCours.php">Dodaj kurs</a></li>
                         <li><a href="setEmail.php">Zmiana e-mail'a</a></li>
                         <li><a href="setName.php">Zmiana imienia</a></li>
                         <li><a href="deleteAccount.php">usuń konto</a></li>
-                        <li><a>Edytuj dane kursu</a></li>
-                        <li><a>Edytuj dane pojazdu</a></li>
+                        <li><a>Edytuj kurs</a></li>
+                        <li><a>Edytuj pojazd</a></li>
                         <li><a href="logout.php">Wyloguj się</a></li>
                     </ul>
                 </div>
@@ -157,18 +157,20 @@
                 <div id="right_info2">
                     <br/>
                     <br/>
-                    <a href="setEmail.php">Zmień e-mail</a>
-                    <br/>
-                    <br/>
-                    <a href="setName.php">Zmień imię</a>
-					<br/>
-                    <br/>
-					<a href="deleteAccount.php">Usuń konto</a>
+                      <ul class="colOpt">
+                        <li><a href="setName.php">Zmień imię</a></li>
+                        <br/>
+                        <li><a href="setEmail.php">Zmień e-mail</a></li>
+                        <br/>
+                        <li><a href="deleteAccount.php">Usuń konto</a></li>
+                    </ul>                           
                 </div>
                 
             </div>
             
             <div id="footer">
+                <br/>
+                <br/>
                LessFuel &copy; Prawa zastrzeżone
                
                <div id="add">

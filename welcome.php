@@ -53,6 +53,8 @@
             </div>
             
             <div id="footer">
+                <br/>
+                <br/>
                LessFuel &copy; Prawa zastrzeżone
                
                <div id="add">
