@@ -78,13 +78,24 @@
         <div class="container">
             
             <div id="header">
-                <div class="title">LessFuel</div>
-                
+                <div class="title">LessFuel
+                </div>
+                 
+               <?php 
+                    echo"Witaj  ".$_SESSION['name']."!";
+               ?>
                 <div class="logingout">
-                    <a href="addCar.php">Dodaj auto</a>
-                    <a href="addCours.php">Dodaj kurs</a>
-                    <a href="setEmail.php">Ustawienia</a>
-                    <a href="logout.php">Wyloguj się</a>
+                    <ul class="menu">
+                        <li><a href="addCar.php">Dodaj auto</a></li>
+                        <li><a href="addCours.php">Dodaj kurs</a></li>
+                        <li><a href="setEmail.php">Zmiana e-mail'a</a></li>
+                        <li><a href="setName.php">Zmiana imienia</a></li>
+                        <li><a href="setPass.php">Zmiana hasła</a></li>
+                        <li><a href="deleteAccount.php">usuń konto</a></li>
+                        <li><a>Edytuj dane kursu</a></li>
+                        <li><a>Edytuj dane pojazdu</a></li>
+                        <li><a href="logout.php">Wyloguj się</a></li>
+                    </ul>
                 </div>
                 
             </div>
@@ -92,10 +103,7 @@
             <div id="main_wall">
                 
                 <div id="left_log">
-                
-               <?php 
-                    echo"Witaj  ".$_SESSION['name']."!";
-               ?>
+               
                 
                 <br/>
                 <br/>

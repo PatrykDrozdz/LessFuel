@@ -92,10 +92,19 @@
                 <div class="title">LessFuel - Ustawienia Twojego konta</div>
                 
                 <div class="logingout">
-                    <a href="interface.php">Strona główna</a>
-                    <a href="addCar.php">Dodaj auto</a>
-                    <a href="addCours.php">Dodaj kurs</a>
-                    <a href="logout.php">Wyloguj się</a>
+                    
+                      <ul class="menu">
+                        <li><a href="interface.php">Główna</a></li>
+                        <li><a href="addCar.php">Dodaj auto</a></li>
+                        <li><a href="addCours.php">Dodaj kurs</a></li>
+                        <li><a href="setEmail.php">Zmiana e-mail'a</a></li>
+                        <li><a href="setName.php">Zmiana imienia</a></li>
+                        <li><a href="setPass.php">Zmiana hasła</a></li>
+                        
+                        <li><a>Edytuj dane kursu</a></li>
+                        <li><a>Edytuj dane pojazdu</a></li>
+                        <li><a href="logout.php">Wyloguj się</a></li>
+                    </ul>
                 </div>
                 
             </div>

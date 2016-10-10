@@ -13,14 +13,14 @@ body{
 /*kolor broken_noise #1c1c1c*/
 #header{
     width: 100%;
-    height: 100px;
+    height: 130px;
     background-color: #1c2c2c;
     text-align: center;
     padding: 5px;
 }
 .title{
     width: 99%;
-    height: 50%;
+    height: 30%;
     
     font-size: 200%;
     font-weight: bold;
@@ -163,4 +163,41 @@ body{
 #photos{
     width: 100%;
     background-color: #1c1c1c;
+}
+
+.menu{
+    text-align: center;
+    
+}
+
+
+
+ul.menu li{
+    display: block;
+    list-style: none;
+    float: left;
+    border-style: solid;
+    border-color: #1c2c2c;
+    text-align: center;
+}
+
+ul.menu a:visited {
+	text-decoration: none;
+	display: block;
+	width: 100%;
+	text-align: center;
+	padding: 10px;
+	font-weight: bold;
+	background-color: #27c;
+	color: #def;
+	border-top: 10px;
+        
+}
+
+ul.menu a:hover{
+    border-style: inset;
+    padding-bottom: 10px;
+    border-color: #1c2c2c;
+    border-left-color: white;
+    border-right-color: white;
 }
