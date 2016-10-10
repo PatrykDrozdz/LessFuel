@@ -125,10 +125,11 @@
                   
                     if($valid==true){
                         
-                        $queryAddCourse = "INSERT INTO course(id_course, from, to, distance, fuel_used, "
-                            . "additional_road_info, cars_id_cars) "
-                            . "VALUES(NULL, '$from', '$to', "
-                            . "'$distance', '$fuel', '$infoRoad', '$carId')";
+                        $queryAddCourse = "INSERT INTO course(id_course, start_place, "
+                                . "end_place,  distance, fuel_used, "
+                                . "additional_road_info, cars_id_cars)"
+                                . "VALUES(NULL, '$from', '$to', "
+                                . "'$distance', '$fuel', '$infoRoad', '$carId')";
                         
                         /*************************
                           echo $totFuel. '<br/>';
