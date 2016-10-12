@@ -59,6 +59,103 @@
             
             if(isset($_POST['courseName'])){
                 
+                $valid = true;
+                
+                $courseName = $_POST['courseName'];
+                
+                $places = explode(" - ", $courseName);
+                
+                $oldStartPlace = $places[0];
+                $oldEndPlace = $places[1];
+                
+                //echo $oldStartPlace.' '.strlen($oldStartPlace).'<br/>'.$oldEndPlace.' '.strlen($oldEndPlace).'<br/>';
+            
+                $resOldCourse = $conection->query("SELECT * FROM course WHERE "
+                        . "start_place = '$oldStartPlace' AND end_place = '$oldEndPlace'");
+                
+                $rowCourse = $resOldCourse->fetch_assoc();
+                
+                $idCourse = $rowCourse['id_course'];
+                $oldDistance = $rowCourse['distance'];
+                $oldFuelUsed = $rowCourse['fuel_used'];
+                $oldRoadInfo = $rowCourse['additional_road_info'];
+                $carId = $rowCourse['cars_id_cars'];
+                
+                //echo $idCourse.'<br/>'.$oldDistance.'<br/>'.$oldFuelUsed.'<br/>'.$oldRoadInfo.'<br/>'.$carId.'<br/> <br/>';
+                
+                $resOldCourse->free();
+                
+                $newFrom = $_POST['fromEdit'];
+                
+                if($newFrom==NULL){
+                    $newFrom = $oldStartPlace;
+                }
+                
+                $newTo = $_POST['toEdit'];
+                
+                if($newTo==NULL){
+                    $newTo = $oldEndPlace;
+                }
+                
+                $newDistance = $_POST['distanceEdit'];
+                
+                if($newDistance==NULL){
+                    $newDistance = $oldDistance;
+                }
+                
+                $newFuelUsed = $_POST['fuelEdit'];
+                
+                if($newFuelUsed==NULL){
+                    $newFuelUsed = $oldFuelUsed;
+                }
+                
+                $newInfoRoad = $_POST['infoRoadEdit'];
+                
+                if($newInfoRoad==NULL){
+                    $newInfoRoad = $oldRoadInfo;
+                }
+                
+                //echo $newFrom.'<br/>'.$newTo.'<br/>'.$newDistance.'<br/>'.$newFuelUsed.'<br/>'.$newInfoRoad.'<br/> <br/>';
+                
+                
+                $resFinalInfo = $conection->query("SELECT * FROM final_info WHERE cars_id_cars = '$carId'");
+                
+                $rowFinalInfo = $resFinalInfo->fetch_assoc();
+                
+                $allFuel = $rowFinalInfo['total_fuel_used'];
+                $allDistance= $rowFinalInfo['total_distance_driven'];
+                
+                $resFinalInfo->free();
+                
+                //echo $allFuel.'<br/>'.$allDistance.'<br/> <br/>';
+                
+                $totalFuel = ($allFuel - $oldFuelUsed) + $newFuelUsed;
+                $totalDistance = ($allDistance  - $oldDistance) + $newDistance;
+                
+                //echo $totalFuel.'<br/>'.$totalDistance;
+                
+                if($valid==true){
+                    
+                    if($conection->query("UPDATE course SET start_place = '$newFrom', end_place = '$newTo', "
+                            . "distance = '$newDistance', fuel_used = '$newFuelUsed', "
+                            . "additional_road_info = '$newInfoRoad' WHERE id_course = '$idCourse'")){
+                        
+                        if($conection->query("UPDATE final_info SET total_fuel_used = '$totalFuel', "
+                                . "total_distance_driven = '$totalDistance' WHERE cars_id_cars = '$carId'")){
+                            
+                            $_SESSION['coursEdit'] = "Dane trasy zostały zmienione";
+                            
+                        }else{
+                            throw new Exception($conection->errno); 
+                        }
+                        
+                    } else {
+                       throw new Exception($conection->errno);  
+                    }
+                    
+                    
+                }
+                
             }
             
          }
@@ -190,9 +287,9 @@
                     <br/>
                     <br/>
                      <?php 
-                         if(isset($_SESSION['coursAdd'])){
-                            echo '<div class="change">'.$_SESSION['coursAdd'].'</div>'; 
-                            unset($_SESSION['coursAdd']);
+                         if(isset($_SESSION['coursEdit'])){
+                            echo '<div class="change">'.$_SESSION['coursEdit'].'</div>'; 
+                            unset($_SESSION['coursEdit']);
                         }
 						
 			if(isset($_SESSION['error_road'])){
