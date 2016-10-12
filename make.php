@@ -117,7 +117,7 @@
                     
                     //(id, name, e_mail, password) 
 					
-					$flag = 1;
+                    $flag = 1;
 					
                     if($conection->query("INSERT INTO users (id_users, name, email, password, flag) "
                             . "VALUES (NULL, '$name', '$email', '$pass_hash', '$flag')")){

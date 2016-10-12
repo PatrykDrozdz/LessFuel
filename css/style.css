@@ -82,6 +82,13 @@ body{
     background-color: #3A3A3A;
 }
 
+.right_change{
+    float: left;
+    width: 50%;
+    height: 680px;
+    background-color: #1c1c1c;
+}
+
 #right_info2{
     float: left;
     width: 50%;
@@ -214,3 +221,4 @@ ul.colOpt a:hover {
         border-top-color: #1c1c1c;
             
 }
+

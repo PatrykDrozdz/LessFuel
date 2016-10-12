@@ -138,7 +138,7 @@
         <div class="container">
             
             <div id="header">
-                <div class="title">LessFuel</div>
+                <div class="title">LessFuel - dodaj auto</div>
                 
                 <div class="logingout">
                   <ul class="menu">
@@ -148,8 +148,8 @@
                         <li><a href="setName.php">Zmiana imienia</a></li>
                         <li><a href="setPass.php">Zmiana hasła</a></li>
                         <li><a href="deleteAccount.php">usuń konto</a></li>
-                        <li><a>Edytuj kurs</a></li>
-                        <li><a>Edytuj pojazd</a></li>
+                        <li><a href="setCourse.php">Edytuj kurs</a></li>
+                        <li><a href="setCar.php">Edytuj pojazd</a></li>
                         <li><a href="logout.php">Wyloguj się</a></li>
                     </ul>
                 </div>

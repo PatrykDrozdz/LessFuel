@@ -102,8 +102,8 @@
                         <li><a href="setEmail.php">Zmiana e-mail'a</a></li>
                         <li><a href="setName.php">Zmiana imienia</a></li>
                         <li><a href="deleteAccount.php">usuń konto</a></li>
-                        <li><a>Edytuj kurs</a></li>
-                        <li><a>Edytuj pojazd</a></li>
+                        <li><a href="setCourse.php">Edytuj kurs</a></li>
+                        <li><a href="setCar.php">Edytuj pojazd</a></li>
                         <li><a href="logout.php">Wyloguj się</a></li>
                     </ul>
                 </div>
