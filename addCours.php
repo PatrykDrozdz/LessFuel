@@ -61,7 +61,7 @@
     }
     
     if(isset($_POST['from']) && isset($_POST['to']) && isset($_POST['distance']) 
-            && isset($_POST['fuel']) && isset($_POST['cars'])){
+            && isset($_POST['fuel']) && isset($_POST['cars']) && isset($_POST['date'])){
         
         $valid=true;
         
@@ -72,6 +72,8 @@
         $distance = $_POST['distance'];
         $fuel = $_POST['fuel'];
         $infoRoad = $_POST['infoRoad'];
+        
+        $date = $_POST['date'];
         
         $userId = $_SESSION['id_users'];
         
@@ -126,9 +128,9 @@
                     if($valid==true){
                         
                         $queryAddCourse = "INSERT INTO course(id_course, start_place, "
-                                . "end_place,  distance, fuel_used, "
+                                . "end_place, day, distance, fuel_used, "
                                 . "additional_road_info, cars_id_cars)"
-                                . "VALUES(NULL, '$from', '$to', "
+                                . "VALUES(NULL, '$from', '$to', '$date', "
                                 . "'$distance', '$fuel', '$infoRoad', '$carId')";
                         
                         /*************************
@@ -186,11 +188,30 @@
         
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
         
-          <script src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/slider.js"></script>
+
+        <link href="css/jquery.datepick.css" rel="stylesheet">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="js/jquery.plugin.js"></script>
+        <script src="js/jquery.datepick.js"></script>
+        <script src="js/jquery.datepick-pl.js"></script>
+       
+        
+        
+        <script>
+
+    $(function() {
+	$('#textfieldDp').datepick();
+	$('#textfieldDp').datepick({onSelect: showDate});
+    });
+
+    function showDate(date) {
+	alert('The date chosen is ' + date);
+    }
+            
+        </script>
         
     </head>
-    <body onload="change_slide()">
+    <body>
         <div class="container">
             
             <div id="header">
@@ -237,16 +258,22 @@
                 <div class="right_change">
                    <br/>
                     <br/>
-                    Trasa z:
-                    <br/>
-                    <input type="text" id="textfield" name="from"/>
+                    Trasa 
                     <br/>
                     <br/>
-                    
+                    z:
+                   
+                    <input type="text" class="textPlace" name="from"/>
+                  
+                     do:
+      
+                    <input type="text" class="textPlace" name="to"/>
                     <br/>
-                    Trasa do:
                     <br/>
-                    <input type="text" id="textfield" name="to"/>
+                    <br/>
+                    data:
+                    <br/>
+                    <input type="text" id="textfieldDp" name="date">
                     <br/>
                     <br/>
                      

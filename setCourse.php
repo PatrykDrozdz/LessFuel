@@ -77,6 +77,7 @@
                 
                 $idCourse = $rowCourse['id_course'];
                 $oldDistance = $rowCourse['distance'];
+                $oldDate = $rowCourse['day'];
                 $oldFuelUsed = $rowCourse['fuel_used'];
                 $oldRoadInfo = $rowCourse['additional_road_info'];
                 $carId = $rowCourse['cars_id_cars'];
@@ -95,6 +96,12 @@
                 
                 if($newTo==NULL){
                     $newTo = $oldEndPlace;
+                }
+                
+                $newDate = $_POST['dateEdit'];
+                
+                if($newDate==NULL){
+                    $newDate = $oldDate;
                 }
                 
                 $newDistance = $_POST['distanceEdit'];
@@ -137,7 +144,7 @@
                 if($valid==true){
                     
                     if($conection->query("UPDATE course SET start_place = '$newFrom', end_place = '$newTo', "
-                            . "distance = '$newDistance', fuel_used = '$newFuelUsed', "
+                            . "day = '$newDate', distance = '$newDistance', fuel_used = '$newFuelUsed', "
                             . "additional_road_info = '$newInfoRoad' WHERE id_course = '$idCourse'")){
                         
                         if($conection->query("UPDATE final_info SET total_fuel_used = '$totalFuel', "
@@ -189,6 +196,30 @@
         
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
         
+        
+        <link href="css/jquery.datepick.css" rel="stylesheet">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="js/jquery.plugin.js"></script>
+        <script src="js/jquery.datepick.js"></script>
+        <script src="js/jquery.datepick-pl.js"></script>
+       
+        
+        
+        <script>
+
+    $(function() {
+	$('#textfieldDp').datepick();
+	$('#textfieldDp').datepick({onSelect: showDate});
+    });
+
+    function showDate(date) {
+	alert('The date chosen is ' + date);
+    }
+            
+        </script>
+        
+        
+        
     </head>
     <body>
         <div class="container">
@@ -239,19 +270,24 @@
                 <div class="right_change">
                     <br/>
                     <br/>
-                    Trasa z:
-                    <br/>
-                    <input type="text" id="textfield" name="fromEdit"/>
+                     Trasa 
                     <br/>
                     <br/>
-                    
+                    z:
+                   
+                    <input type="text" class="textPlace" name="fromEdit"/>
+                  
+                     do:
+      
+                    <input type="text" class="textPlace" name="toEdit"/>
                     <br/>
-                    Trasa do:
-                    <br/>
-                    <input type="text" id="textfield" name="toEdit"/>
                     <br/>
                     <br/>
-                     
+                    data:
+                    <br/>
+                    <input type="text" id="textfieldDp" name="dateEdit">
+                    <br/>
+                    <br/>
                     <br/>
                     Odległość:
                     <br/>

@@ -31,12 +31,15 @@ if((isset($_SESSION['loged'])) && ($_SESSION['loged']==true)){
         <script src="js/jquery.js"></script>
         <script type="text/javascript" src="js/slider.js"></script>
         
+   
+        
     </head>
     <body onload="change_slide()">
         <div class="container">
             
             <div id="header">
                 <div class="title">LessFuel</div>
+
             </div>
             
             <div id="left_log">
