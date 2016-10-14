@@ -194,6 +194,9 @@
         <script src="js/jquery.plugin.js"></script>
         <script src="js/jquery.datepick.js"></script>
         <script src="js/jquery.datepick-pl.js"></script>
+        
+       
+        <script type="text/javascript" src="js/slider.js"></script>
        
         
         
@@ -211,7 +214,7 @@
         </script>
         
     </head>
-    <body>
+    <body onload="change_slide()">
         <div class="container">
             
             <div id="header">
@@ -252,6 +255,13 @@
                     
                     </select>
                    
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div id="photos">
+                    
+                     </div>
+                
                     
                     
                     </div>

@@ -140,8 +140,11 @@
         
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
         
+      
+        <script type="text/javascript" src="js/slider.js"></script>
+        
     </head>
-    <body>
+    <body onload="change_slide()">
         <div class="container">
             
             <div id="header">
@@ -181,6 +184,13 @@
                         ?>  
                     
                     </select>
+                    
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div id="photos">
+                    
+                     </div>
                 
                     </div>
                 

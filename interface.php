@@ -15,7 +15,7 @@
          
          //$id = $_SESSION['id'];//id uzytkownika
          
-          if($conection->connect_errno!=0){
+         if($conection->connect_errno!=0){
              echo"Error: ".$conection->connect_errno;
          }else {
             
@@ -42,6 +42,26 @@
             }else{
                 throw new Exception($conection->errno);
             }
+            
+            if(isset($_POST['carName'])){
+                
+                $carName = $_POST['carName'];
+                
+                $resCar = $conection->query("SELECT * FROM cars WHERE mark = '$carName'");
+                
+                $rowCar = $resCar->fetch_assoc();
+                
+                $id_car = $rowCar['id_cars'];
+                $capacity = $rowCar['capacity'];
+                $production_year = $rowCar['production_year'];
+                $additional_info = $rowCar['additional_info'];
+                
+                $resCar->free();
+                
+                echo $id_car.'<br/>'.$carName.'<br/>'.$capacity.'<br/>'.$production_year.'<br/>'.$additional_info;
+                
+            }
+            
          }
          
          $conection->close();
@@ -105,18 +125,21 @@
                 <br/>
                 <?php//lista rozwijana ?>
                 <form method="post">
-                <select name="name" id="textfield">
+                <select  name="carName" id="textfield">
                     
                      <?php 
                         for($i=1; $i<=$howMany; $i++){
                             if($tabCar[$i]!=NULL){
-                                echo '<option name="carId">'.$tabCar[$i].'</option>';
+                                echo '<option>'.$tabCar[$i].'</option>';
                             }
                     }
                     
                     ?>  
                     
                 </select>
+                    <br/>
+                    <br/>
+                 <input type="submit" value="Trasa" id="button"/>
                 </form>
                 </div>
                 

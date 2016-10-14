@@ -51,6 +51,7 @@
                     //kurs
                     $tabCoursS[$coursCount] = $row2['start_place'];
                     $tabCourseE[$coursCount] = $row2['end_place'];
+                    $tabDate[$coursCount] = $row2['day'];
                     $coursCount++;
                     
                 $res->free();
@@ -67,17 +68,17 @@
                 
                 $oldStartPlace = $places[0];
                 $oldEndPlace = $places[1];
+                $dateOld = $places[2];
                 
                 //echo $oldStartPlace.' '.strlen($oldStartPlace).'<br/>'.$oldEndPlace.' '.strlen($oldEndPlace).'<br/>';
             
                 $resOldCourse = $conection->query("SELECT * FROM course WHERE "
-                        . "start_place = '$oldStartPlace' AND end_place = '$oldEndPlace'");
+                        . "start_place = '$oldStartPlace' AND end_place = '$oldEndPlace' AND day = '$dateOld'");
                 
                 $rowCourse = $resOldCourse->fetch_assoc();
                 
                 $idCourse = $rowCourse['id_course'];
                 $oldDistance = $rowCourse['distance'];
-                $oldDate = $rowCourse['day'];
                 $oldFuelUsed = $rowCourse['fuel_used'];
                 $oldRoadInfo = $rowCourse['additional_road_info'];
                 $carId = $rowCourse['cars_id_cars'];
@@ -203,7 +204,8 @@
         <script src="js/jquery.datepick.js"></script>
         <script src="js/jquery.datepick-pl.js"></script>
        
-        
+       
+        <script type="text/javascript" src="js/slider.js"></script>
         
         <script>
 
@@ -221,7 +223,7 @@
         
         
     </head>
-    <body>
+    <body onload="change_slide()">
         <div class="container">
             
             <div id="header">
@@ -257,13 +259,21 @@
                         for($i=0; $i<=$coursCount; $i++){
                             if($tabCoursS[$i]!=NULL){
                                 echo '<option>'
-                                .$tabCoursS[$i].' - '.$tabCourseE[$i].'</option>';
+                                .$tabCoursS[$i].' - '.$tabCourseE[$i].' - '.$tabDate[$i].'</option>';
                             }
                     }
                     
                     ?>  
                     
                 </select>
+                
+                <br/>
+                    <br/>
+                    <br/>
+                    <div id="photos">
+                    
+                     </div>
+                
                 
                 </div>
                 
