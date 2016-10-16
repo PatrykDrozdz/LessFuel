@@ -42,25 +42,7 @@
             }else{
                 throw new Exception($conection->errno);
             }
-            
-            if(isset($_POST['carName'])){
-                
-                $carName = $_POST['carName'];
-                
-                $resCar = $conection->query("SELECT * FROM cars WHERE mark = '$carName'");
-                
-                $rowCar = $resCar->fetch_assoc();
-                
-                $id_car = $rowCar['id_cars'];
-                $capacity = $rowCar['capacity'];
-                $production_year = $rowCar['production_year'];
-                $additional_info = $rowCar['additional_info'];
-                
-                $resCar->free();
-                
-                echo $id_car.'<br/>'.$carName.'<br/>'.$capacity.'<br/>'.$production_year.'<br/>'.$additional_info;
-                
-            }
+
             
          }
          
@@ -93,6 +75,10 @@
         
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
         
+        <script src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/selectRoad.js"></script>
+        <script type="text/javascript" src="js/showCarRoadInfo.js"></script>
+        
     </head>
     <body>
         <div class="container">
@@ -119,18 +105,20 @@
             <div id="main_wall">
                 
                 <div id="left_log">
-               
-                
+ 
                 <br/>
                 <br/>
-                <?php//lista rozwijana ?>
+                Pojazdy:
+                <br/>
+               <br/>
                 <form method="post">
-                <select  name="carName" id="textfield">
-                    
+                    <select  name="carName" id="textfield" 
+                             onchange="selRoad(this.value)">
+                        <option value="">---</option>
                      <?php 
                         for($i=1; $i<=$howMany; $i++){
                             if($tabCar[$i]!=NULL){
-                                echo '<option>'.$tabCar[$i].'</option>';
+                                echo '<option value="'.$i.'">'.$tabCar[$i].'</option>';
                             }
                     }
                     
@@ -139,11 +127,22 @@
                 </select>
                     <br/>
                     <br/>
-                 <input type="submit" value="Trasa" id="button"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
                 </form>
+                
+               Przebyte trasy:
+                <br/>
+                <br/>
+                 <div id="roadSelect">
+                     
+                 </div>
                 </div>
                 
                 <div id="right_info">
+
                     
                 </div>
                 
