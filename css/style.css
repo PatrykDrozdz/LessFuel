@@ -188,6 +188,37 @@ body{
     
 }
 
+table {
+    width: 50%;
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 1px solid whitesmoke;
+    padding: 5px;
+}
+
+th {
+    text-align: left;
+}
+
+#right_info_final{
+    font-size: 5px;
+    float: left;
+    width: 70%;
+    height: 680px;
+    font-size: 30px;
+    background-color: #3A3A3A;
+}
+
+#left_select{
+    float: left;
+    width: 30%;
+    height: 680px;
+    font-size: 20px;
+    background-color: #1c1c1c;
+}
+
 ul.colOpt li{
     display: block;
     list-style: none;

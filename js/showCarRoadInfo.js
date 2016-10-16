@@ -12,7 +12,7 @@
                     
                     $.post('gettingDatas.php', {postvalue2: value}, 
                     function(data){
-                        $('#right_info').html(data);
+                        $('#right_info_final').html(data);
                     }
                     
                     );

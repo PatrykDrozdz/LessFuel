@@ -104,7 +104,7 @@
             
             <div id="main_wall">
                 
-                <div id="left_log">
+                <div id="left_select">
  
                 <br/>
                 <br/>
@@ -141,7 +141,7 @@
                  </div>
                 </div>
                 
-                <div id="right_info">
+                <div id="right_info_final">
 
                     
                 </div>
