@@ -84,7 +84,7 @@ if(isset($_POST['postvalue2'])){
             
             $rowCars = $resultCarShow->fetch_assoc();
             
-            echo "<table>
+            echo "<table class='table'>
                     <tr>
                     <th>Marka</th>
                     <th>Pojemnosc</th>
@@ -108,7 +108,7 @@ if(isset($_POST['postvalue2'])){
             $rowCourse = $resultCourseShow->fetch_assoc();
             
             
-            echo "<table>
+            echo "<table class='table'>
                     <tr>
                     <th>Początek</th>
                     <th>Koniec</th>
@@ -136,7 +136,7 @@ if(isset($_POST['postvalue2'])){
             
             $rowFinalInfo = $resultFinalInfo->fetch_assoc();
             
-            echo "<table>
+            echo "<table class='table'>
                     <tr>
                     <th>Suma przejechanych kilomentrów</th>
                     <th>Suma zurzytego paliwa</th>
