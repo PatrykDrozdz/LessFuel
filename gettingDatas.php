@@ -84,20 +84,21 @@ if(isset($_POST['postvalue2'])){
             
             $rowCars = $resultCarShow->fetch_assoc();
             
-            echo "<table class='table'>
+            echo "<table class='trueTable'>
                     <tr>
                     <th>Marka</th>
                     <th>Pojemnosc</th>
                     <th>Rok produkcji</th>
-                    <th>dodatkowe informacje</th>
                     </tr>";
             echo'<tr>';
             echo '<td>'.$rowCars['mark'].'</td>';
             echo '<td>'.$rowCars['capacity'].'</td>';
             echo '<td>'.$rowCars['production_year'].'</td>';
-            echo '<td>'.$rowCars['additional_info'].'</td>';
             echo '</tr>'
             . '</table>';
+            echo'<br/>';
+            echo '<div class="infoDiv">Opis auta: '.$rowCars['additional_info'].'</div>';
+            
             echo '<br/> <br/>';
             
             $resultCarShow->free();
@@ -108,14 +109,13 @@ if(isset($_POST['postvalue2'])){
             $rowCourse = $resultCourseShow->fetch_assoc();
             
             
-            echo "<table class='table'>
+            echo "<table class='trueTable'>
                     <tr>
                     <th>Początek</th>
                     <th>Koniec</th>
                     <th>data</th>
                     <th>odległość</th>
                     <th>zużyte paliwo</th>
-                    <th>dodatkowe informacje</th>
                     </tr>";
             echo'<tr>';
             echo '<td>'.$rowCourse['start_place'].'</td>';
@@ -123,9 +123,10 @@ if(isset($_POST['postvalue2'])){
             echo '<td>'.$rowCourse['day'].'</td>';
             echo '<td>'.$rowCourse['distance'].'</td>';
             echo '<td>'.$rowCourse['fuel_used'].'</td>';
-            echo '<td>'.$rowCourse['additional_road_info'].'</td>';
             echo '</tr>'
             . '</table>';
+             echo '<br/> ';
+           echo '<div class="infoDiv">Informacje o drodze: '.$rowCourse['additional_road_info'].'<div>';
             echo '<br/> <br/> <br/>';
             
             $resultCourseShow->free();
@@ -136,7 +137,7 @@ if(isset($_POST['postvalue2'])){
             
             $rowFinalInfo = $resultFinalInfo->fetch_assoc();
             
-            echo "<table class='table'>
+            echo "<table class='trueTable'>
                     <tr>
                     <th>Suma przejechanych kilomentrów</th>
                     <th>Suma zurzytego paliwa</th>
@@ -158,5 +159,4 @@ if(isset($_POST['postvalue2'])){
         echo 'developer info: '.$e;
      }
 }
- 
 ?>
