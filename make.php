@@ -1,13 +1,8 @@
 <?php 
+
     
-    session_start();
-    
-    //skrypt zabezpieczający
-    if((isset($_SESSION['loged'])) && ($_SESSION['loged']==true)){
-        header('Location: interface.php');
-        exit();//opuszczanie skryptu
-        }
-    
+        $page = isset($_GET['page']) ? $_GET['page'] : 'main';
+        
     if(isset($_POST['email'])){
         
         //walidacja
@@ -66,19 +61,7 @@
             $_SESSION['error_reg'] = "Nie zaakceptowano regulaminu!";
         }
         ////////////////////////////////////////
-        
-        //sprawdzanie bota
-        ////////////////////////////////
-       $secret_key = '6Le8iSATAAAAAFDonMOENcCNJK83kftM56mnklEA';
-        
-        $check_key = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret_key.'&response='.
-                $_POST['g-recaptcha-response']);
-        $check_key_decode = json_decode($check_key);
-        
-        if(!($check_key_decode->success)){
-            $valid=false;
-            $_SESSION['error_bot'] = "Brak weryfikacji!";
-        }
+
         
         //sprawdzanie, czy nie ma już zarejesrtowanego danego e-maila
         require_once 'connect.php';
@@ -122,7 +105,8 @@
                     if($conection->query("INSERT INTO users (id_users, name, email, password, flag) "
                             . "VALUES (NULL, '$name', '$email', '$pass_hash', '$flag')")){
                         $_SESSION['registered']=true;
-                        header("Location: welcome.php");
+                        //$page = 'welcome';
+                        header("Location: index.php?page=welcome");
                     }else {
                         throw new Exception($conection->errno);
                     }
@@ -135,7 +119,7 @@
             echo '<span class="error">Błąd serwera!</span>';
 			
             echo'</br>'; //deweloper infor
-			echo '<span class="error">developer info: '.$e.'</span>';
+            echo '<span class="error">developer info: '.$e.'</span>';
 
         }
         
@@ -145,134 +129,3 @@
 ?>
 
 
-<!DOCTYPE html>
-
-<html lang="pl">
-    <head>
-        <meta charset="UTF-8">
-        
-        <title>LessFuel - rejestracja</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="keywords" content="paliwo spalanie pojazdy licznik kalkulator baza danych"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrom=1"/>
-        
-        <link rel="stylesheet" href="css/style.css" type="text/css"/>
-        
-        <script src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/slider.js"></script>
-        <script src='https://www.google.com/recaptcha/api.js'></script>
-
-        
-    </head>
-    <body onload="change_slide()">
-        <div class="container">
-            
-            <div id="header">
-                <div class="title">LessFuel</div>
-                
-                <a href="http://localhost/lessfuel/index.php">Strona główna</a>
-            </div>
-                <div id="give_your_e-mail">   
-                    <div id="left_log">
-                    <form method="post">
-                    <br/>
-                    e-mail:
-                    <br/>
-                    <input type="text" name="email" id="textfield"/>
-                    
-                     <?php 
-                        if(isset($_SESSION['error_email'])){
-                            echo '<div class="error">'.$_SESSION['error_email'].'</div>'; 
-                            unset($_SESSION['error_email']);
-                        }
-                    ?>
-                    
-                    <br/>
-                    <br/>
-                    imię:
-                    <br/>
-                    <input type="text" name="yourName" id="textfield"/>
-                    
-                    <?php 
-                        if(isset($_SESSION['error_name'])){
-                            echo '<div class="error">'.$_SESSION['error_name'].'</div>'; 
-                            unset($_SESSION['error_name']);
-                        }
-                    ?>
-                    
-                    <br/>
-                    <br/>
-                    hasło:
-                    <br/>
-                    <input type="password" name="pass1" id="textfield"/>
-                    
-                     <?php 
-                        if(isset($_SESSION['error_pass'])){
-                            echo '<div class="error">'.$_SESSION['error_pass'].'</div>'; 
-                            unset($_SESSION['error_pass']);
-                        }
-                    ?>
-                    
-                    <br/>
-                    <br/>
-                    powtórz hasło:
-                   <br/>
-                    <input type="password" name="pass2" id="textfield"/>
-                    <br/>
-                    <br/>
-                    <label>
-                    <input type="checkbox" name="reg"/> Akceptuje 
-                    </label>
-                    <a href="">regulamin</a>
-                    
-                    <?php 
-                        if(isset($_SESSION['error_reg'])){
-                            echo '<div class="error">'.$_SESSION['error_reg'].'</div>'; 
-                            unset($_SESSION['error_reg']);
-                        }
-                    ?>
-                    
-                    <br/>
-                    <br/>
-                    <div class="g-recaptcha" data-sitekey="6Le8iSATAAAAACnjxq8O4J7X-JRwTe2zM16aOiwh"></div>
-                    <?php 
-                        if(isset($_SESSION['error_bot'])){
-                            echo '<div class="error">'.$_SESSION['error_bot'].'</div>'; 
-                            unset($_SESSION['error_bot']);
-                        }
-                    ?>
-          
-                    <input type="submit" value="Załóż konto" id="button"/>
-                    
-                </form>
-                    </div>
-                    <div id="right_info2">
-                        <div id="photos"></div>
-                    </div>    
-                    
-                </div>
-           
-            <div id="footer">
-                <br/>
-                <br/>
-               LessFuel &copy; Prawa zastrzeżone
-               
-               <div id="add">
-                   Developed by Patryk Dróżdż
-               </div>
-               
-               <div class="add2">
-
-               </div>
-               
-               <div class="add2">
-                   pdrozdz@onet.eu
-               </div>
-               
-            </div>
-            
-        </div>
-        
-    </body>
-</html>

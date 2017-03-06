@@ -1,10 +1,4 @@
-<?php //zabezpieczenie przed wejście bez logowania
-    session_start();
-    
-    if(!isset($_SESSION['loged'])){
-        header('Location: index.php');
-        exit();
-    }
+<?php 
 
         $id_users = $_SESSION['id_users'];
         
@@ -181,32 +175,7 @@
 ?>
 
 
-<!DOCTYPE html>
-        
-<html lang="pl">
-    <head>
-        
-        
-        <meta charset="UTF-8">
-        
-        <title>Aplikacja pozwalająca zapisać oraz sprawdzić ilość zużytego paliwa</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="keywords" content="paliwo spalanie pojazdy licznik kalkulator baza danych"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrom=1"/>
-        
-        <link rel="stylesheet" href="css/style.css" type="text/css"/>
-        
-        
-        <link href="css/jquery.datepick.css" rel="stylesheet">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="js/jquery.plugin.js"></script>
-        <script src="js/jquery.datepick.js"></script>
-        <script src="js/jquery.datepick-pl.js"></script>
-       
-       
-        <script type="text/javascript" src="js/slider.js"></script>
-        
+
         <script>
 
     $(function() {
@@ -219,10 +188,7 @@
     }
             
         </script>
-        
-        
-        
-    </head>
+
     <body onload="change_slide()">
         <div class="container">
             
@@ -230,14 +196,14 @@
                 <div class="title">LessFuel - edytuj dane trasy</div>
                 <div class="logingout">
                     <ul class="menu">
-                        <li><a href="interface.php">Strona główna</a></li>
-                        <li><a href="addCar.php">Dodaj auto</a></li>
-                        <li><a href="addCours.php">Dodaj kurs</a></li>
-                        <li><a href="setEmail.php">Zmiana e-mail'a</a></li>
-                        <li><a href="setName.php">Zmiana imienia</a></li>
-                        <li><a href="setPass.php">Zmiana hasła</a></li>
-                        <li><a href="deleteAccount.php">usuń konto</a></li>
-                        <li><a href="setCar.php">Edytuj pojazd</a></li>
+                        <li><a href="interface.php?page=mainLoged">Strona główna</a></li>
+                        <li><a href="interface.php?page=addCar">Dodaj auto</a></li>
+                        <li><a href="interface.php?page=addCours">Dodaj kurs</a></li>
+                        <li><a href="interface.php?page=setEmail">Zmiana e-mail'a</a></li>
+                        <li><a href="interface.php?page=setName">Zmiana imienia</a></li>
+                        <li><a href="interface.php?page=setPass">Zmiana hasła</a></li>
+                        <li><a href="interface.php?page=deleteAccount">usuń konto</a></li>
+                        <li><a href="interface.php?page=setCar">Edytuj pojazd</a></li>
                         <li><a href="logout.php">Wyloguj się</a></li>
                     </ul>
                 </div>
@@ -350,29 +316,3 @@
                     </div>
                 </form>
                 </div>
-                
-         
-            
-           <div id="footer">
-                <br/>
-                <br/>
-               LessFuel &copy; Prawa zastrzeżone
-               
-               <div id="add">
-                   Developed by Patryk Dróżdż
-               </div>
-               
-               <div class="add2">
-
-               </div>
-               
-               <div class="add2">
-                   pdrozdz@onet.eu
-               </div>
-               
-            </div>
-            
-        </div>
-        
-    </body>
-</html>

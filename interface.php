@@ -54,120 +54,67 @@
                  echo 'developer info: '.$e;
     }
 	
+    
+    $page = isset($_GET['page']) ? $_GET['page'] : 'mainLoged';
+    
+    switch ($page){
+        
+    case 'mainLoged':
+        include ('components/head.php');
+        include ('components/mainLoged.php');
+        include ('components/footer.php');
+        break;
+    
+    case 'addCar':
+        include ('components/head.php');
+        include ('components/addCar.php');
+        include ('components/footer.php');
+        break;
+    case 'addCours':
+        include ('components/head.php');
+        include ('components/addCours.php');
+        include ('components/footer.php');
+        break;
+    
+    case 'setEmail':
+        include ('components/head.php');
+        include ('components/setEmail.php');
+        include ('components/footer.php');
+        break;
+    
+    case 'deleteAccount':
+        include ('components/head.php');
+        include ('components/deleteAccount.php');
+        include ('components/footer.php');
+        break;
+    
+    case 'setCar':
+        include ('components/head.php');
+        include ('components/setCar.php');
+        include ('components/footer.php');
+        break;
+    
+    case 'setCourse':
+        include ('components/head.php');
+        include ('components/setCourse.php');
+        include ('components/footer.php');
+        break;
+    
+    case 'setName':
+        include ('components/head.php');
+        include ('components/setName.php');
+        include ('components/footer.php');
+        break;
+    
+    case 'setPass':
+        include ('components/head.php');
+        include ('components/setPass.php');
+        include ('components/footer.php');
+        break;
+    
+    
+    }
 	
 	
 ?>
 
-
-<!DOCTYPE html>
-        
-<html lang="pl">
-    <head>
-        
-        
-        <meta charset="UTF-8">
-        
-        <title>Aplikacja pozwalająca zapisać oraz sprawdzić ilość zużytego paliwa</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="keywords" content="paliwo spalanie pojazdy licznik kalkulator baza danych"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrom=1"/>
-        
-        <link rel="stylesheet" href="css/style.css" type="text/css"/>
-        
-        <script src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/selectRoad.js"></script>
-        <script type="text/javascript" src="js/showCarRoadInfo.js"></script>
-        
-    </head>
-    <body>
-        <div class="container">
-            
-            <div id="header">
-                <div class="title">LessFuel
-                </div>
-                <div class="logingout">
-                    <ul class="menu">
-                        <li><a href="addCar.php">Dodaj auto</a></li>
-                        <li><a href="addCours.php">Dodaj kurs</a></li>
-                        <li><a href="setEmail.php">Zmiana e-mail'a</a></li>
-                        <li><a href="setName.php">Zmiana imienia</a></li>
-                        <li><a href="setPass.php">Zmiana hasła</a></li>
-                        <li><a href="deleteAccount.php">usuń konto</a></li>
-                        <li><a href="setCourse.php">Edytuj kurs</a></li>
-                        <li><a href="setCar.php">Edytuj pojazd</a></li>
-                        <li><a href="logout.php">Wyloguj się</a></li>
-                    </ul>
-                </div>
-                
-            </div>
-            
-            <div id="main_wall">
-                
-                <div id="left_select">
- 
-                <br/>
-                <br/>
-                Pojazdy:
-                <br/>
-               <br/>
-                <form method="post">
-                    <select  name="carName" id="textfield" 
-                             onchange="selRoad(this.value)">
-                        <option value="">---</option>
-                     <?php 
-                        for($i=1; $i<=$howMany; $i++){
-                            if($tabCar[$i]!=NULL){
-                                echo '<option value="'.$i.'">'.$tabCar[$i].'</option>';
-                            }
-                    }
-                    
-                    ?>  
-                    
-                </select>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                </form>
-                
-               Przebyte trasy:
-                <br/>
-                <br/>
-                 <div id="roadSelect">
-                     
-                 </div>
-                </div>
-                
-                <div id="right_info_final">
-
-                    
-                </div>
-                
-            </div>
-            
-           <div id="footer">
-                <br/>
-                <br/>
-               LessFuel &copy; Prawa zastrzeżone
-               
-               <div id="add">
-                   Developed by Patryk Dróżdż
-               </div>
-               
-               <div class="add2">
-
-               </div>
-               
-               <div class="add2">
-                   pdrozdz@onet.eu
-               </div>
-               
-            </div>
-            
-        </div>
-        
-    </body>
-</html>
