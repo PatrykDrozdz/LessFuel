@@ -1,4 +1,4 @@
-
+    <title>Strona główna</title>
     <body>
         <div class="container">
             

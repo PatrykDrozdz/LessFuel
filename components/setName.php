@@ -67,6 +67,8 @@
     
 ?>
 
+
+<title>Zmień swoje imię</title>
     <body>
         <div class="container">
             

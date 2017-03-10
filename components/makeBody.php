@@ -1,4 +1,6 @@
- <body onload="change_slide()">
+
+<title>Zarejestruj swoje konto</title>
+<body onload="change_slide()">
         <div class="container">
             
             <div id="header">

@@ -116,7 +116,7 @@
 	
 	
 ?>
-
+<title>Edytuj swoje auta</title>
     <body onload="change_slide()">
         <div class="container">
             

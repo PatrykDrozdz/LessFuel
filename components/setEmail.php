@@ -78,9 +78,7 @@
     
 ?>
 
-
-<!DOCTYPE html>
-        
+<title>Zmień swój e-mail</title>
     <body>
         <div class="container">
             

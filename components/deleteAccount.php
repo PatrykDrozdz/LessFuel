@@ -60,10 +60,7 @@
     }
     
 ?>
-
-
-<!DOCTYPE html>
-        
+    <title>Usuń konto</title>
 
     <body>
         <div class="container">

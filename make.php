@@ -1,7 +1,4 @@
 <?php 
-
-    
-        $page = isset($_GET['page']) ? $_GET['page'] : 'main';
         
     if(isset($_POST['email'])){
         

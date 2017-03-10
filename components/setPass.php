@@ -63,6 +63,7 @@
     
 ?>
 
+<title>Zmień swoje hasło</title>
     <body>
         <div class="container">
             

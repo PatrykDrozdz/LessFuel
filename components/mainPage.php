@@ -1,5 +1,4 @@
-
-
+<title>Aplikacja pozwalająca zapisać oraz sprawdzić ilość zużytego paliwa</title>
 
     <body onload="change_slide()">
         <div class="container">

@@ -107,7 +107,7 @@
     
     
 ?>
-
+    <title>Dodaj auto</title>
     <body onload="change_slide()">
         <div class="container">
             
@@ -118,12 +118,12 @@
                   <ul class="menu">
                         <li><a href="interface.php?page=mainLoged">Strona główna</a></li>
                         <li><a href="interface.php?page=addCours">Dodaj kurs</a></li>
-                        <li><a href="setEmail.php">Zmiana e-mail'a</a></li>
-                        <li><a href="setName.php">Zmiana imienia</a></li>
-                        <li><a href="setPass.php">Zmiana hasła</a></li>
-                        <li><a href="deleteAccount.php">usuń konto</a></li>
-                        <li><a href="setCourse.php">Edytuj kurs</a></li>
-                        <li><a href="setCar.php">Edytuj pojazd</a></li>
+                        <li><a href="interface.php?page=setEmail">Zmiana e-mail'a</a></li>
+                        <li><a href="interface.php?page=setName">Zmiana imienia</a></li>
+                        <li><a href="interface.php?page=setPass">Zmiana hasła</a></li>
+                        <li><a href="interface.php?page=deleteAccount">usuń konto</a></li>
+                        <li><a href="interface.php?page=setCourse">Edytuj kurs</a></li>
+                        <li><a href="interface.php?page=setCar">Edytuj pojazd</a></li>
                         <li><a href="logout.php">Wyloguj się</a></li>
                     </ul>
                 </div>

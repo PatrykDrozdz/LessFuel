@@ -175,19 +175,7 @@
 ?>
 
 
-
-        <script>
-
-    $(function() {
-	$('#textfieldDp').datepick();
-	$('#textfieldDp').datepick({onSelect: showDate});
-    });
-
-    function showDate(date) {
-	alert('The date chosen is ' + date);
-    }
-            
-        </script>
+<title>Edytuj swoje kursy</title>
 
     <body onload="change_slide()">
         <div class="container">

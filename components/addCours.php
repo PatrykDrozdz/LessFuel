@@ -165,20 +165,7 @@
     
     }
 ?>
-
-        <script>
-
-    $(function() {
-	$('#textfieldDp').datepick();
-	$('#textfieldDp').datepick({onSelect: showDate});
-    });
-
-    function showDate(date) {
-	alert('The date chosen is ' + date);
-    }
-            
-        </script>
-        
+    <title>Dodaj trasę</title>
     </head>
     <body onload="change_slide()">
         <div class="container">
