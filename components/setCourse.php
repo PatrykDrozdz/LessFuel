@@ -255,7 +255,7 @@
                     <br/>
                     Odległość:
                     <br/>
-                    <input type="text" id="textfield" name="distanceEdit"/>
+                    <input type="number" min="0" step="0.1"  id="textfield" name="distanceEdit"/>
                     <br/>
                     <?php 
                          if(isset($_SESSION['error_distance'])){
@@ -269,7 +269,7 @@
                     <br/>
                     Zużyte paliwo:
                     <br/>
-                    <input type="text" id="textfield" name="fuelEdit"/>
+                    <input type="number" min="0" step="0.1"  id="textfield" name="fuelEdit"/>
                     <br/>
                     <?php 
                          if(isset($_SESSION['error_fuel'])){

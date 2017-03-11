@@ -186,7 +186,7 @@
                     <br/>
                     Pojemność:
                     <br/>
-                    <input type="text" id="textfield" name="capacityEdit"/>
+                    <input type="number" min="0" step="0.1"  id="textfield" name="capacityEdit"/>
                     <br/>
                      <?php 
                          if(isset($_SESSION['error_capacity'])){
@@ -200,7 +200,7 @@
                     <br/>
                     Rok produkcji:
                     <br/>
-                    <input type="text" id="textfield" name="yearProdEdit"/>
+                    <input type="number" min="0" step="1" id="textfield" name="yearProdEdit"/>
                     <br/>
                     <?php 
                          if(isset($_SESSION['error_yearProd'])){

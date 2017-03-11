@@ -166,7 +166,7 @@
     }
 ?>
     <title>Dodaj trasę</title>
-    </head>
+
     <body onload="change_slide()">
         <div class="container">
             
@@ -244,7 +244,7 @@
                     <br/>
                     Odległość:
                     <br/>
-                    <input type="text" id="textfield" name="distance"/>
+                    <input type="number" min="0" step="0.1" id="textfield" name="distance"/>
                     <br/>
                     <?php 
                          if(isset($_SESSION['error_distance'])){
@@ -258,7 +258,7 @@
                     <br/>
                     Zużyte paliwo:
                     <br/>
-                    <input type="text" id="textfield" name="fuel"/>
+                    <input type="number" min="0" step="0.1" id="textfield" name="fuel"/>
                     <br/>
                     <?php 
                          if(isset($_SESSION['error_fuel'])){
