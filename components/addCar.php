@@ -12,22 +12,7 @@
             $capacity = $_POST['capacity'];//liczba double
             $yearProd = $_POST['yearProd'];//liczba int
             $infoCar = $_POST['infoCar']; 
-           
-           /* if(!is_int($yearProd)){
-                $valid=FALSE;
-                $_SESSION['error_yearProd'] = "Podaj właściwą";
-            }    
-            
-            if(!is_float($capacity)){
-                $valid=FALSE;
-                $_SESSION['error_capacity'] = "Podaj liczbę całkowitą";
-            }
-            
-            if(ctype_alnum($mark)==FALSE){
-                   $valid=FALSE;
-            $_SESSION['error_mark'] = "Nazwa auta może składać się tylko "
-                    . "z liter i cyfr (bez polskich zanków)";
-            }*/
+ 
             
             require_once 'connect.php';
                  
@@ -156,13 +141,7 @@
                     <br/>
                     <input type="number" min="0" step="0.1"  id="textfield" name="capacity"/>
                     <br/>
-                     <?php 
-                         if(isset($_SESSION['error_capacity'])){
-                            echo '<div class="error">'.$_SESSION['error_capacity'].'</div>'; 
-                            unset($_SESSION['error_capacity']);
-                        }
-                    
-                    ?>
+
                     <br/>
                      <br/>
                     <br/>
@@ -170,13 +149,7 @@
                     <br/>
                     <input type="number" min="0" step="1" id="textfield" name="yearProd"/>
                     <br/>
-                    <?php 
-                         if(isset($_SESSION['error_yearProd'])){
-                            echo '<div class="error">'.$_SESSION['error_yearProd'].'</div>'; 
-                            unset($_SESSION['error_yearProd']);
-                        }
-                   
-                    ?>
+
                     <br/>
                      <br/>
                     <br/>

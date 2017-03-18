@@ -7,31 +7,31 @@ if((isset($_SESSION['loged'])) && ($_SESSION['loged']==true)){
     exit();//opuszczanie skryptu
 }
 
+include 'make.php';
+include 'classes/componentsClassMainPage.php';
+
 $page = isset($_GET['page']) ? $_GET['page'] : 'main';
+
+$getComponents = new componentsClassMainPage();
+
+$getComponents->getHead();
 
 switch ($page){
     
 case 'main':
-    include ('components/head.php');
-    include ('components/mainPage.php');
-    include ('components/footer.php');
+    $getComponents->getMainPage();
     break;
 
 case 'make':
-
-    include ('components/head.php');
-    include ('components/makeBody.php');
-    include ('components/footer.php');
-    include 'make.php';
+    $getComponents->getMakePage();
     break;
 
 case 'welcome':
-    include ('components/head.php');
-    include ('components/welcome.php');
-    include ('components/footer.php');
+    $getComponents->getWelcome();
     break;
 
 }
 
+$getComponents->getFooter();
           
 ?>
