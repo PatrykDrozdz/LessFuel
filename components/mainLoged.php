@@ -9,12 +9,14 @@
 
             $connection = new MySQLiConnect($host, $db_user, $db_password, $db_name);
   
-            $query = "SELECT * FROM cars";
+            $query = "SELECT * FROM cars WHERE users_id = '$id_users'";
             
-            $result = mysqli_query($connection, $query);
+            $result = $connection->queryExecuter($connection, $query);
                 
-            $howMany = mysqli_num_rows($result);
-				
+            $howManyCars = mysqli_num_rows($result);
+            
+            
+		/*		
             for($i=1; $i<=$howMany; $i++){
                 
                 $res = mysqli_query($connection ,"SELECT * FROM cars WHERE "
@@ -26,7 +28,7 @@
                 $tabCar[$i] = $row2['mark'];
                    
             }
-
+            */
             mysqli_close($connection);
          
         } catch(Exceptione $e) {
@@ -74,11 +76,12 @@
                              onchange="selRoad(this.value)">
                         <option value="">---</option>
                      <?php 
-                        for($i=1; $i<=$howMany; $i++){
+                     echo '<option>'.$howManyCars.'</option>';
+                       /* for($i=1; $i<=$howMany; $i++){
                             if($tabCar[$i]!=NULL){
                                 echo '<option value="'.$i.'">'.$tabCar[$i].'</option>';
                             }
-                    }
+                    }*/
                     
                     ?>  
                     

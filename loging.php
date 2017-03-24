@@ -25,10 +25,11 @@ include 'classes/mathFunctions.php';
         
         try{
             
-            $connection->queryExecuter($connection, "SELECT * FROM users WHERE "
-                    . "email = '%s'", $log);
+            $query = "SELECT * FROM users WHERE email = '%s'";
             
-            $result = $connection->getResult();
+            $connection->queryLog($connection, $query, $log);
+            
+            $result = $connection->getResultLog();
 
             $howManyUsers = $connection->rowCount($result);
             
@@ -46,16 +47,8 @@ include 'classes/mathFunctions.php';
                         $connection->logInto($result);
                         
                     } else {
-                     
-                        unset($_SESSION['registered']);
-                        unset($_SESSION['login']);
-                        unset($_SESSION['pass']);
-
-                        session_unset();
-
-                        $_SESSION['error'] = '<span class="error">konto '
-                            . 'zostało usunięte!</span>';		
-                        header($connection->getIndexString());
+                    
+                        $connection->logError($connection);
                         
                     }
                         

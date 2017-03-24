@@ -35,11 +35,9 @@ class MySQLiConnect extends mysqli {
     }
     
     
-    public function queryExecuter($connection, $query, $log){
+    public function queryExecuter($connection, $query){
 
-        if($this->result=mysqli_query($connection,
-                    sprintf($query,
-                    mysqli_real_escape_string($connection, $log)))){
+        if($this->result=mysqli_query($connection, $query)){
             return true;
         } else {
             return false;
