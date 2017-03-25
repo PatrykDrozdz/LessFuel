@@ -1,6 +1,14 @@
 
 <title>Zarejestruj swoje konto</title>
 <body onload="change_slide()">
+    
+    <?php 
+        if(isset($_SESSION['error'])){
+            echo $_SESSION['error']; 
+            unset($_SESSION['error']);
+        }
+    ?>
+    
         <div class="container">
             
             <div id="header">

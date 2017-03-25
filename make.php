@@ -30,7 +30,7 @@
                 $email_san!=$email){
             $valid = FALSE;
             $_SESSION['error_email'] = "Podaj poprawny adres e-mail";
-            }
+        }
         ///////////////////////////////////////////////////////////
         //hasła
         $pass1 = $_POST['pass1'];    
@@ -113,15 +113,16 @@
             }
             
         }catch(Exception $e){
-            echo '<span class="error">Błąd serwera!</span>';
+            
+            $_SESSION['error'] = '<span class="error">Błąd serwera!</span> </br> '
+                    . '<span class="error">developer info: '.$e.'</span>';
 			
-            echo'</br>'; //deweloper infor
-            echo '<span class="error">developer info: '.$e.'</span>';
-
         }
         
         
         
+    } else {
+        $_SESSION['error_email'] = "Nie podano e-mail'a";
     }
 ?>
 

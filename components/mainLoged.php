@@ -9,11 +9,21 @@
 
             $connection = new MySQLiConnect($host, $db_user, $db_password, $db_name);
   
-            $query = "SELECT * FROM cars WHERE users_id = '$id_users'";
+            $userId = mysqli_real_escape_string($connection, $id_users);
+            //WHERE users_id = '$userId'
+            $query = "SELECT mark FROM cars ORDER BY mark";
             
             $result = $connection->queryExecuter($connection, $query);
-                
-            $howManyCars = mysqli_num_rows($result);
+            
+            $howManyCars = $connection->rowCount($result);
+            
+            $rowsMark = mysqli_fetch_all($result, 0);
+            
+            mysqli_free_result($result);
+            
+            
+            
+            
             
             
 		/*		
@@ -42,6 +52,15 @@
     <title>Strona główna</title>
     <body>
         <div class="container">
+            
+            <?php 
+                
+                if(isset($_SESSION['error'])){
+                    echo $_SESSION['error'];
+                    unset($_SESSION['error']);
+                }
+            
+            ?>
             
             <div id="header">
                 <div class="title">LessFuel
@@ -76,12 +95,10 @@
                              onchange="selRoad(this.value)">
                         <option value="">---</option>
                      <?php 
-                     echo '<option>'.$howManyCars.'</option>';
-                       /* for($i=1; $i<=$howMany; $i++){
-                            if($tabCar[$i]!=NULL){
-                                echo '<option value="'.$i.'">'.$tabCar[$i].'</option>';
-                            }
-                    }*/
+                        echo '<option>'.$howManyCars.'</option>';
+                        for($i=0; $i<$howMany; $i++){
+                            echo '<option value="'.$i.'">'.$rowsMark[$i].'</option>';
+                        }
                     
                     ?>  
                     

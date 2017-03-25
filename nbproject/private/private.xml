@@ -5,6 +5,7 @@
         <group>
             <file>file:/C:/xampp/htdocs/LessFuel/components/mainLoged.php</file>
             <file>file:/C:/xampp/htdocs/LessFuel/classes/MySQLiLoging.php</file>
+            <file>file:/C:/xampp/htdocs/LessFuel/components/makeBody.php</file>
             <file>file:/C:/xampp/htdocs/LessFuel/loging.php</file>
             <file>file:/C:/xampp/htdocs/LessFuel/classes/mathFunctions.php</file>
             <file>file:/C:/xampp/htdocs/LessFuel/make.php</file>
