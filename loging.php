@@ -59,7 +59,8 @@ include 'classes/mathFunctions.php';
                     header($indexString);
 
                 }
-
+                
+                mysqli_free_result($result);
 
             } else {
 

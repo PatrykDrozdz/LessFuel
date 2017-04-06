@@ -10,14 +10,14 @@
             $connection = new MySQLiConnect($host, $db_user, $db_password, $db_name);
   
             $userId = mysqli_real_escape_string($connection, $id_users);
-            //WHERE users_id = '$userId'
-            $query = "SELECT mark FROM cars ORDER BY mark";
+            
+            $query = "SELECT mark FROM cars WHERE users_id = '$id_users'";
             
             $result = $connection->queryExecuter($connection, $query);
             
             $howManyCars = $connection->rowCount($result);
             
-            $rowsMark = mysqli_fetch_all($result, 0);
+            $rowsMark = mysqli_fetch_all($result);
             
             mysqli_free_result($result);
             
