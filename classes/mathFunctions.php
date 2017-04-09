@@ -22,6 +22,10 @@ class mathFunctions {
         
     }
     
+    public function wordLength($value){
+        return strlen($value);
+    }
+    
 }
 
 

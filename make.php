@@ -1,5 +1,12 @@
 <?php 
         
+    require_once 'connect.php';
+    include 'classes/MySQLiMake.php';
+    include 'classes/mathFunctions.php';
+    
+    $connection = new MySQLiMake($host, $db_user, $db_password, $db_name);
+    $mathFun = new mathFunctions();
+    
     if(isset($_POST['email'])){
         
         //walidacja
@@ -9,13 +16,17 @@
         $name = $_POST['yourName'];
         
         //spr długości imienie
-        if(strlen($name)<3 || strlen($name)>20){
+        
+        $nameLength = $mathFun->wordLength($name);
+        
+        if($mathFun->inequality(3, $nameLength)==true || 
+                $mathFun->inequality($nameLength, 20)==true) {
             $valid = false;
             $_SESSION['error_name'] = "Imię może składać się od 3 do 20 znaków!";
         }
         
         //sprawdzanie znaków alfanumerycznych
-        if(ctype_alnum($name)==FALSE){
+        if($connection->alphaNumericCheck($name) == FALSE){
             $valid=FALSE;
             $_SESSION['error_name'] = "Imię może składać się tylko "
                     . "z liter i cyfr (bez polskich zanków)";
@@ -24,9 +35,9 @@
         //email
         $email = $_POST['email'];
         //email bezpieczny - sanityzowany
-        $email_san = filter_var($email, FILTER_SANITIZE_EMAIL);
+        $email_san = $connection->emailSan($email);
         
-        if((filter_var($email_san, FILTER_VALIDATE_EMAIL)==FALSE) || 
+        if($connection->filterVar($email_san) || 
                 $email_san!=$email){
             $valid = FALSE;
             $_SESSION['error_email'] = "Podaj poprawny adres e-mail";
@@ -36,18 +47,21 @@
         $pass1 = $_POST['pass1'];    
         $pass2 = $_POST['pass2'];
         
-        if((strlen($pass1)<5) || (strlen($pass1)>15)){
+        $passLength = $mathFun->wordLength($pass1);
+        
+        if($mathFun->inequality(5, $passLength)==true || 
+                $mathFun->inequality($passLength, 15)==true){
             $valid = FALSE;
             $_SESSION['error_pass'] = "Hasło musi mieć od 5 do 15 znaków";
         }
         
-        if($pass1!=$pass2){
+        if($mathFun->equality($pass1, $pass2)==FALSE){
             $valid = FALSE;
             $_SESSION['error_pass'] = "Podane hasła są różne";
         }
         
         //hashowanie hasła
-        $pass_hash = password_hash($pass1, PASSWORD_DEFAULT);
+        $pass_hash = $connection->passwordHash($pass1);
         //echo $pass_hash; exit(); //sprawdzanie hashu
         
         //regulamin - checkbox
@@ -61,12 +75,12 @@
 
         
         //sprawdzanie, czy nie ma już zarejesrtowanego danego e-maila
-        require_once 'connect.php';
+
         
         mysqli_report(MYSQLI_REPORT_STRICT);
         
         try{
-            $conection = new mysqli($host, $db_user, $db_password, $db_name);
+
             
             if($conection->connect_errno!=0){
                 throw new Exception(mysqli_connect_errno());
@@ -122,7 +136,7 @@
         
         
     } else {
-        $_SESSION['error_email'] = "Nie podano e-mail'a";
+        //$_SESSION['error_email'] = "Nie podano e-mail'a";
     }
 ?>
 
