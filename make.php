@@ -80,9 +80,22 @@
         mysqli_report(MYSQLI_REPORT_STRICT);
         
         try{
-
             
-            if($conection->connect_errno!=0){
+            $safer = $connection->injectionSafer($email);
+            
+            $queryCheck = sprintf("SELECT * FROM users WHERE email='%s'", 
+                    mysqli_real_escape_string($connection, $safer));
+            
+            $result = $connection->queryExecuter($connection, $queryCheck);
+            
+            $howManyEmails = $connection->rowCount($result);
+            
+            if($mathFun->inequality(0, $howManyEmails)==FALSE){
+                $valid = FALSE;
+                $_SESSION['error_email'] = "E-mail o podanym adresie jest już w bazie!";
+            }
+            
+            /*if($conection->connect_errno!=0){
                 throw new Exception(mysqli_connect_errno());
             }else{
 				
@@ -124,7 +137,7 @@
                 }
                 ///////////////////////////////////////////
                 $conection->close();
-            }
+            }*/
             
         }catch(Exception $e){
             
