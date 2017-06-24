@@ -1,7 +1,7 @@
 <?php
 
- require_once 'connect.php';
- $conection = new mysqli($host, $db_user, $db_password, $db_name);
+require_once 'connect.php';
+include 'classes/MySQLiConnect.php';
 
 //get roads
  if(isset($_POST['postvalue'])){
@@ -9,20 +9,17 @@
     $value = $_POST['postvalue'];
     
     try{
-
-        if($conection->connect_errno!=0){
-             echo"Error: ".$conection->connect_errno;
-        } else {
-
-            $queryCountCourse= "SELECT * FROM course";
+        
+        $connection = new MySQLiConnect($host, $db_user, $db_password, $db_name);
+        
+        $queryCountCourse= "SELECT * FROM course";
+              
+        $connection->queryExecuter($connection, $queryCountCourse);
             
             
-            $result = $conection->query($queryCountCourse);
+        $howManyCourses = $result->num_rows;
             
             
-            $howManyCourses = $result->num_rows;
-            
-            //echo $value.'<br/>'.$howManyCourses;
             
             echo'<form method="post">';
             echo'<select id="textfield" name="course" onchange="showCarRoad(this.value)">';
@@ -49,13 +46,11 @@
             }
             echo '</select>';
             echo'</form>';
-        }
+        
         
         $conection->close();
     }catch(Exception $e){
-        echo '<span class="error">Błąd serwera!</span>';
-         echo'</br>'; //deweloper infor
-         echo 'developer info: '.$e;
+        $_SESSION['error'] = '<span class="error">Błąd serwera!</span>';
     }
     
  }
@@ -154,9 +149,8 @@ if(isset($_POST['postvalue2'])){
         $conection->close();
         
      } catch (Exception $e){
-        echo '<span class="error">Błąd serwera!</span>';
-        echo'</br>'; //deweloper infor
-        echo 'developer info: '.$e;
+        $_SESSION['error'] = '<span class="error">Błąd serwera!</span>';
+
      }
 }
 ?>

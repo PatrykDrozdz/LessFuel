@@ -54,6 +54,18 @@ class MySQLiConnect extends mysqli {
         return $result;
     }
     
+    public function getFetch($result, $value){
+        
+        while($row = mysqli_fetch_assoc($result)){
+            
+            $rows[] = $row[$value];
+            return $rows;
+            
+        }
+            
+        mysqli_free_result($result);
+    }
+    
 }
 
 ?>

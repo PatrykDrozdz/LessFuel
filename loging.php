@@ -37,13 +37,17 @@ include 'classes/mathFunctions.php';
             if($mathFun->inequality($howManyUsers, 0)==true){
                 
                 $row = mysqli_fetch_assoc($result);
-                
+        
                 //sprawdzanie hasła hashowanego
                 if($connection->checkPass($pass, $row['password'])==TRUE) {
                     
                     //sprawdzanie, czy użytkownik jest aktywny
                     if($mathFun->equality($row['flag'], 1)==TRUE){
-
+                                                
+                        $_SESSION['id_users'] = $row['id_users'];//pobieranie Id użytkownika
+                        $_SESSION['name'] = $row['name'];
+                        $_SESSION['pass'] = $row['password'];
+                        
                         $connection->logInto($result);
                         
                     } else {

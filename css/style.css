@@ -21,7 +21,6 @@ body{
 .title{
     width: 99%;
     height: 30%;
-    
     font-size: 200%;
     font-weight: bold;
     padding: 1%;
@@ -264,8 +263,6 @@ ul.colOpt a:hover {
         border-top-color: #1c1c1c;
             
 }
-
-
 
 .trueTable, td, th{
     font-size: 20px;

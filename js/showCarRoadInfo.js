@@ -3,7 +3,7 @@
                     document.getElementById("roadSelect").innerHTML="";
                     return;
                 } else{
-                    //document.getElementById("roadSelect").innerHTML="tekst"+value;
+                    
                     if(window.XMLHttpRequest){
                         xmlhttp = new XMLHttpRequest();
                     } else {

@@ -1,52 +1,7 @@
 <?php 
 
-	require_once 'connect.php';
-        include 'classes/MySQLiConnect.php';
-        
-        $id_users = $_SESSION['id_users'];
-        
-	try{
+    include 'showResults.php';
 
-            $connection = new MySQLiConnect($host, $db_user, $db_password, $db_name);
-  
-            $userId = mysqli_real_escape_string($connection, $id_users);
-            
-            $query = "SELECT mark FROM cars WHERE users_id = '$id_users'";
-            
-            $result = $connection->queryExecuter($connection, $query);
-            
-            $howManyCars = $connection->rowCount($result);
-            
-            $rowsMark = mysqli_fetch_all($result);
-            
-            mysqli_free_result($result);
-            
-            
-            
-            
-            
-            
-		/*		
-            for($i=1; $i<=$howMany; $i++){
-                
-                $res = mysqli_query($connection ,"SELECT * FROM cars WHERE "
-                        . "id_cars = '$i' AND users_id = '$id_users'");
-                
-                $row2 = mysqli_fetch_assoc($res);
-                
-                //samochód
-                $tabCar[$i] = $row2['mark'];
-                   
-            }
-            */
-            mysqli_close($connection);
-         
-        } catch(Exceptione $e) {
-            
-            $_SESSION['error'] = '<span class="error">Błąd serwera!</span>';
-            
-        }
-        
 ?>
 
     <title>Strona główna</title>
@@ -95,9 +50,9 @@
                              onchange="selRoad(this.value)">
                         <option value="">---</option>
                      <?php 
-                        echo '<option>'.$howManyCars.'</option>';
-                        for($i=0; $i<$howMany; $i++){
-                            echo '<option value="'.$i.'">'.$rowsMark[$i].'</option>';
+
+                        for($i=0; $i<$howManyCars; $i++){
+                            echo '<option value="'.$i.'">'.$rows[$i].'</option>';
                         }
                     
                     ?>  
