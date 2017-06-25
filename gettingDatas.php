@@ -15,11 +15,11 @@ include 'classes/MySQLiConnect.php';
         $queryCountCourse= "SELECT * FROM course";
               
         $connection->queryExecuter($connection, $queryCountCourse);
-            
-            
-        $howManyCourses = $result->num_rows;
-            
-            
+        
+        $result = $connection->getResult();
+        
+        $howManyCourses = $connection->rowCount($result);   
+        //echo $howManyCourses;    
             
             echo'<form method="post">';
             echo'<select id="textfield" name="course" onchange="showCarRoad(this.value)">';
@@ -27,10 +27,10 @@ include 'classes/MySQLiConnect.php';
             
             for($i=1; $i<=$howManyCourses; $i++){
                
-                $resultCourse = $conection->query("SELECT * FROM course WHERE "
+                $resultCourse = $connection->queryExecuter($connection, "SELECT * FROM course WHERE "
                         . "id_course = '$i' AND cars_id_cars = '$value'");
                 
-                $rowCourse = $resultCourse->fetch_assoc();
+                $rowCourse = mysqli_fetch_assoc($resultCourse);
 
                 $tabCoursS[$i] = $rowCourse['start_place'];
                 $tabCourseE[$i] = $rowCourse['end_place'];
@@ -42,13 +42,13 @@ include 'classes/MySQLiConnect.php';
                     
                     echo '<option value="'.$carRoad .'">'.$fullCourseName[$i].'</option>';
                 }
-                $resultCourse->free();
+                mysqli_free_result($resultCourse);
             }
             echo '</select>';
             echo'</form>';
         
         
-        $conection->close();
+        mysqli_close($connection);
     }catch(Exception $e){
         $_SESSION['error'] = '<span class="error">Błąd serwera!</span>';
     }

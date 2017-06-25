@@ -22,11 +22,9 @@
             $rows[] = $row['mark'];
             
         }
-            
+
         $connection->getFetch($result, 'mark');
             
-        //mysqli_free_result($result);
-         
         mysqli_close($connection);
             
     } catch(Exceptione $e) {
